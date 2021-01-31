@@ -1,0 +1,4 @@
+::ng-deep .product-item:hover .p-card-body {
+  background-color: darken($color: #fff, $amount: 5);
+  cursor: pointer;
+}

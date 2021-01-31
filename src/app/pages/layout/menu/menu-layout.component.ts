@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { User } from '../../../models/user.model';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-pe-layout-menu',
@@ -7,6 +9,9 @@ import { MenuItem } from 'primeng/api';
 })
 export class MenuLayoutComponent implements OnInit {
   public items!: MenuItem[];
+  public user: User;
+
+  public constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.items = [
@@ -16,5 +21,12 @@ export class MenuLayoutComponent implements OnInit {
         routerLink: '/'
       }
     ];
+    this.watchUser();
+  }
+
+  private watchUser(): void {
+    this.authService.getUser().subscribe(user => {
+      this.user = user;
+    });
   }
 }
