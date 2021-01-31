@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PagesModule } from './pages/pages.module';
 import { ProductDataService } from './services/data/product.data.service';
+import { ServiceModule } from './services/service.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -19,9 +20,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RouterModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
+    ServiceModule,
     PagesModule
   ],
-  providers: [ProductDataService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
