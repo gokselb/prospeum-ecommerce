@@ -11,8 +11,8 @@ import { RouterService } from 'src/app/services/store/router.service';
 })
 export class ProductDetailComponent {
   public product: Product;
-  public selectedColor: string;
-  public selectedSize: string = '';
+  public selectedColor: number;
+  public selectedSize: number;
   public constructor(private routerService: RouterService, private productService: ProductDataService) {
     this.getProductId();
   }

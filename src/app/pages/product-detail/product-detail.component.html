@@ -1,4 +1,4 @@
-<p-card class="product-item">
+<p-card class="product-item-detail">
   <div class="row">
     <div class="col-3">
       <img class="img-fluid" [src]="product?.imgUrl" alt="">
@@ -18,13 +18,17 @@
       <span>{{ this.product?.quantity }} available</span>
       <div *ngIf="this.product?.colors?.length > 0" class="colors mt-2">
         <label class="mr-2">Select color: </label>
-        <button class="color btn mr-2" *ngFor="let item of this.product?.colors" [style.background-color]="item"
-          [class.selected]="this.selectedColor == item" (click)="this.selectedColor = item"></button>
+        <button class="color btn mr-2" *ngFor="let item of this.product?.colors" [style.background-color]="item.value"
+          [class.selected]="this.selectedColor == item.index" (click)="this.selectedColor = item.index"></button>
       </div>
 
       <div *ngIf="this.product?.sizes?.length > 0" class="sizes mt-2">
         <label class="mr-2">Select size: </label>
-        <p-selectButton styleClass="d-inline" [options]="this.product?.sizes" [(ngModel)]="this.selectedSize"></p-selectButton>
+        <p-dropdown appendTo="body" [options]="this.product?.sizes" [(ngModel)]="this.selectedSize" optionLabel="value"
+          optionValue="index"></p-dropdown>
+      </div>
+      <div class="float-right">
+        <button pButton label="Add to cart" icon="pi pi-shopping-cart"></button>
       </div>
     </div>
   </div>

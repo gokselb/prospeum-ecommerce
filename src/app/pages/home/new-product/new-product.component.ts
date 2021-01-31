@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { StandardMessages } from 'src/app/enums';
 import { NotificationTypes } from 'src/app/models/notification-types.enum';
-import { Product } from 'src/app/models/product.model';
+import { IndexedValue, Product } from 'src/app/models/product.model';
 import { ProductDataService } from 'src/app/services/data/product.data.service';
 import { NotificationService } from 'src/app/services/utils/notification.service';
 
@@ -14,7 +14,8 @@ import { NotificationService } from 'src/app/services/utils/notification.service
 })
 export class NewProductComponent {
   public formGroup: FormGroup;
-  public colors: string[] = [];
+  public colors: IndexedValue<string>[] = [];
+  public sizes: string[] = [];
 
   public constructor(
     private fb: FormBuilder,
@@ -35,7 +36,11 @@ export class NewProductComponent {
   }
 
   public addColor(): void {
-    this.colors.push('');
+    const newIndex = this.colors.length;
+    this.colors.push({
+      index: newIndex,
+      value: ''
+    });
   }
 
   public removeColor(index: number): void {
@@ -44,6 +49,11 @@ export class NewProductComponent {
 
   public onSubmit(): void {
     this.formGroup.controls.colors.patchValue(this.colors);
+    this.formGroup.controls.sizes.patchValue(
+      this.sizes.map((value, index) => {
+        return { index, value } as IndexedValue<string>;
+      })
+    );
     if (!this.formGroup.valid) {
       this.notificationService.notify(NotificationTypes.Error, {
         detail: StandardMessages.ValidationError

@@ -18,6 +18,6 @@
   </div>
   <span class="discount-indicator" *ngIf="this.product?.discount">{{ this.product?.discount }}%</span>
 </p-card>
-<p-card *ngIf="this.isNewButton" class="product-item" (click)="this.showNewProduct()">
+<p-card *ngIf="this.isNewButton" class="product-item new-item" (click)="this.showNewProduct()">
   <i class="pi pi-plus"></i> Add new product
 </p-card>

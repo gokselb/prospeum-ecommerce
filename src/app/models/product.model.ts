@@ -4,8 +4,13 @@ export class Product extends BaseModel {
   name: string;
   quantity: number;
   imgUrl: string;
-  colors: string[];
-  sizes: number[];
+  colors: IndexedValue<string>[];
+  sizes: IndexedValue<string>[];
   price: number;
   discount?: number;
+}
+
+export interface IndexedValue<T> {
+  index: number;
+  value: T;
 }
