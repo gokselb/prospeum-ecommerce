@@ -11,8 +11,8 @@ export class BaseDataService<T extends BaseModel> {
   private collection: AngularFirestoreCollection<T>;
   private collectionObs: Observable<T[]>;
 
-  constructor(private firestore: AngularFirestore, typeAccess: new () => T, private loadingService: LoadingService) {
-    this.collectionName = typeAccess.name;
+  constructor(private firestore: AngularFirestore, collectionName: string, private loadingService: LoadingService) {
+    this.collectionName = collectionName;
     this.collectionObs = this.firestore.collection<T>(this.collectionName).valueChanges();
     this.collection = this.firestore.collection<T>(this.collectionName);
   }

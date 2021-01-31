@@ -7,6 +7,6 @@ import { BaseDataService } from './base.data.service';
 @Injectable()
 export class ProductDataService extends BaseDataService<Product> {
   constructor(firestore: AngularFirestore, loadingService: LoadingService) {
-    super(firestore, Product, loadingService);
+    super(firestore, 'Product', loadingService);
   }
 }
