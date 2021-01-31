@@ -8,6 +8,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { ChipsModule } from 'primeng/chips';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 export const PrimeModules: any[] = [
   MenubarModule,
@@ -19,5 +20,6 @@ export const PrimeModules: any[] = [
   DynamicDialogModule,
   InputNumberModule,
   ColorPickerModule,
-  ChipsModule
+  ChipsModule,
+  SelectButtonModule
 ];

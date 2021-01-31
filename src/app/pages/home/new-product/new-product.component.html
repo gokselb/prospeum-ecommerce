@@ -30,7 +30,7 @@
     <div *ngFor="let item of this.colors;let i = index" class="position-relative d-inline mr-2">
       <span class="position-absolute color-remove" (click)="this.removeColor(i)">-</span>
       <p-colorPicker [ngModelOptions]="{standalone: true}" [name]="'picker'+i" [(ngModel)]="this.colors[i]"
-        [appendTo]="'body'">
+        >
       </p-colorPicker>
     </div>
     <button class="color btn btn-outline-info" type="button" (click)="this.addColor()">+</button>

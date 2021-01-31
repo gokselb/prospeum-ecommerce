@@ -1,5 +1,22 @@
 <p-card *ngIf="!this.isNewButton" class="product-item" [routerLink]="['/product', product?.id]">
-  {{this.product?.name}}
+  <div class="row">
+    <div class="col-4">
+      <img class="img-fluid" [src]="product?.imgUrl" alt="">
+    </div>
+    <div class="col">
+      <h4 class="font-weight-bold">
+        {{this.product?.name}}
+      </h4>
+      <p *ngIf="this.product?.discount" class="h3 text-success">{{ this.product?.price - (this.product?.price * this.product?.discount / 100) |
+        currency:
+        'EUR'}}</p>
+      <p [class.h3]="!this.product?.discount" [class.h4]="this.product?.discount"
+        [ngStyle]="{    'text-decoration': this.product?.discount ? 'line-through': 'none'}">{{this.product?.price |
+        currency:
+        'EUR'}}</p>
+    </div>
+  </div>
+  <span class="discount-indicator" *ngIf="this.product?.discount">{{ this.product?.discount }}%</span>
 </p-card>
 <p-card *ngIf="this.isNewButton" class="product-item" (click)="this.showNewProduct()">
   <i class="pi pi-plus"></i> Add new product
