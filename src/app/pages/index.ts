@@ -1,6 +1,7 @@
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { HomeComponent } from './home/home.component';
+import { NewProductComponent } from './home/new-product/new-product.component';
 import { ProductComponent } from './home/product/product.component';
 import { MainLayoutComponent } from './layout/main-layout.component';
 import { MenuLayoutComponent } from './layout/menu/menu-layout.component';
@@ -14,7 +15,6 @@ export * from './layout/main-layout.component';
 export * from './layout/menu/menu-layout.component';
 export * from './product-detail/product-detail.component';
 
-
 export const components: any[] = [
   MainLayoutComponent,
   MenuLayoutComponent,
@@ -22,5 +22,6 @@ export const components: any[] = [
   RegisterComponent,
   HomeComponent,
   ProductComponent,
-  ProductDetailComponent
+  ProductDetailComponent,
+  NewProductComponent
 ];

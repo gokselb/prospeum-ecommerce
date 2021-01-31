@@ -1,3 +1,6 @@
-  <p-card class="product-item" [routerLink]="['/product', product.id]">
-    {{this.product?.name}}
-  </p-card>
+<p-card *ngIf="!this.isNewButton" class="product-item" [routerLink]="['/product', product?.id]">
+  {{this.product?.name}}
+</p-card>
+<p-card *ngIf="this.isNewButton" class="product-item" (click)="this.showNewProduct()">
+  <i class="pi pi-plus"></i> Add new product
+</p-card>

@@ -1,3 +1,5 @@
 <div class="row">
-  <app-pe-home-product class="col-md-6 mb-2" *ngFor="let product of this.products$ | async" [product]="product"></app-pe-home-product>
+  <app-pe-home-product class="col-md-6 mb-2" [isNewButton]="true"></app-pe-home-product>
+  <app-pe-home-product class="col-md-6 mb-2" *ngFor="let product of this.products$ | async" [product]="product">
+  </app-pe-home-product>
 </div>

@@ -17,7 +17,7 @@ export class ProductDetailComponent {
   private getProductId(): void {
     this.routerService.currentRoute().subscribe(value => {
       if (value?.params?.id) {
-        this.productService.getById(value.params.id).subscribe(result => {
+        this.productService.getById(+value.params.id).subscribe(result => {
           this.product = result;
         });
       }
