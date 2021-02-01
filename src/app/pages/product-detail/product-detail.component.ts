@@ -1,4 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
 import { NotificationTypes, StandardMessages } from 'src/app/enums';
 
 import { IndexedValue, Product } from 'src/app/models/product.model';
@@ -6,6 +9,7 @@ import { ProductDataService } from 'src/app/services/data/product.data.service';
 import { CartService } from 'src/app/services/store/cart/cart.service';
 import { RouterService } from 'src/app/services/store/router';
 import { NotificationService } from 'src/app/services/utils/notification.service';
+import { EditProductComponent } from '../home/product-form/edit-product/edit-product.component';
 
 @Component({
   selector: 'app-pe-home-product-detail',
@@ -20,7 +24,10 @@ export class ProductDetailComponent {
     private routerService: RouterService,
     private productService: ProductDataService,
     private cartService: CartService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private router: Router,
+    private confirmationService: ConfirmationService,
+    private dialogService: DialogService
   ) {
     this.getProductId();
   }
@@ -37,12 +44,45 @@ export class ProductDetailComponent {
   public addToCart(): void {
     if (!this.selectedColor) {
       this.notificationService.notify(NotificationTypes.Info, {
-        detail: StandardMessages.Error
+        detail: StandardMessages.SelectColor
       });
+      return;
     }
+    this.notificationService.notify(NotificationTypes.Success, {
+      detail: StandardMessages.ProductAdded
+    });
     this.cartService.addProduct({
       product: this.product,
       customValues: { Color: this.selectedColor.value, Size: this.selectedSize ? this.selectedSize : this.product.sizes[0].value }
+    });
+  }
+
+  public deleteProduct(event: Event): void {
+    this.confirmationService.confirm({
+      target: event.target,
+      message: 'Are you sure that you want to proceed?',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.productService.delete(this.product);
+        this.notificationService.notify(NotificationTypes.Success, {
+          detail: StandardMessages.ProductDeleted
+        });
+        this.router.navigateByUrl('/');
+      },
+      reject: () => {
+        this.notificationService.notify(NotificationTypes.Info, {
+          detail: StandardMessages.Canceled
+        });
+      }
+    });
+  }
+
+  public editProduct(): void {
+    this.dialogService.open(EditProductComponent, {
+      header: 'Edit product',
+      data: {
+        product: this.product
+      }
     });
   }
 }

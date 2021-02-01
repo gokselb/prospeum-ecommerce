@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { PrimeModules } from './prime-modules';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 
 import { PagesRoutingModule } from './pages-routing.module';
@@ -15,6 +15,6 @@ import { CartService } from '../services/store/cart/cart.service';
   imports: [CommonModule, ReactiveFormsModule, FormsModule, PagesRoutingModule, ...PrimeModules],
   declarations: [...components],
   exports: [...components],
-  providers: [FormBuilder, MessageService, NotificationService, DialogService, CartService]
+  providers: [FormBuilder, MessageService, NotificationService, DialogService, CartService, ConfirmationService]
 })
 export class PagesModule {}

@@ -27,6 +27,13 @@
         <p-dropdown appendTo="body" [options]="this.product?.sizes" [(ngModel)]="this.selectedSize" optionLabel="value"
           optionValue="value"></p-dropdown>
       </div>
+      <hr>
+      <p-confirmPopup></p-confirmPopup>
+      <span class="p-buttonset">
+        <button icon="pi pi-pencil" label="Edit" pButton (click)="this.editProduct()"></button>
+        <button label="Delete" icon="pi pi-trash" class="p-button-danger" pButton
+          (click)="this.deleteProduct($event)"></button>
+      </span>
       <div class="float-right">
         <button pButton label="Add to cart" icon="pi pi-shopping-cart" (click)="this.addToCart()"></button>
       </div>

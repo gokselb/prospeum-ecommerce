@@ -57,4 +57,22 @@ export class BaseDataService<T extends BaseModel> {
       );
     });
   }
+
+  delete(model: T): void {
+    this.collection.ref
+      .where('id', '==', model.id)
+      .get()
+      .then(result => {
+        result.docs[0].ref.delete();
+      });
+  }
+
+  update(model: T): void {
+    this.collection.ref
+      .where('id', '==', model.id)
+      .get()
+      .then(result => {
+        result.docs[0].ref.update(model);
+      });
+  }
 }

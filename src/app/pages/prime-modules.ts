@@ -12,7 +12,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { OrderListModule } from 'primeng/orderlist';
-
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 export const PrimeModules: any[] = [
   MenubarModule,
   ButtonModule,
@@ -27,5 +27,6 @@ export const PrimeModules: any[] = [
   DropdownModule,
   CheckboxModule,
   OverlayPanelModule,
-  OrderListModule
+  OrderListModule,
+  ConfirmPopupModule
 ];
