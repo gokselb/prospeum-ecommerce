@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
+
 import { Product } from 'src/app/models/product.model';
 import { ProductDataService } from 'src/app/services/data/product.data.service';
-import { RouterStateUrl } from 'src/app/services/store';
-import { RouterService } from 'src/app/services/store/router.service';
+import { RouterService } from 'src/app/services/store/router';
 
 @Component({
   selector: 'app-pe-home-product-detail',

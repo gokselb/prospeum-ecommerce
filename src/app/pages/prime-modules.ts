@@ -9,6 +9,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { ChipsModule } from 'primeng/chips';
 import { DropdownModule } from 'primeng/dropdown';
+import { CheckboxModule } from 'primeng/checkbox';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 export const PrimeModules: any[] = [
   MenubarModule,
@@ -21,5 +23,7 @@ export const PrimeModules: any[] = [
   InputNumberModule,
   ColorPickerModule,
   ChipsModule,
-  DropdownModule
+  DropdownModule,
+  CheckboxModule,
+  OverlayPanelModule
 ];

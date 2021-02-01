@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { Observable } from 'rxjs';
+import { RouterService } from 'src/app/services/store/router';
 import { User } from '../../../models/user.model';
 import { AuthService } from '../../../services/auth/auth.service';
 
@@ -10,8 +12,9 @@ import { AuthService } from '../../../services/auth/auth.service';
 export class MenuLayoutComponent implements OnInit {
   public items!: MenuItem[];
   public user: User;
+  public isLoginPage = false;
 
-  public constructor(private authService: AuthService) {}
+  public constructor(private authService: AuthService, private routerService: RouterService) {}
 
   ngOnInit(): void {
     this.items = [
@@ -22,11 +25,16 @@ export class MenuLayoutComponent implements OnInit {
       }
     ];
     this.watchUser();
+    this.watchRoute();
   }
-
+  private watchRoute(): void {
+    this.routerService.currentRoute().subscribe(result => {
+      this.isLoginPage = result.url.indexOf('login') > -1;
+    });
+  }
   private watchUser(): void {
-    this.authService.getUser().subscribe(user => {
-      this.user = user;
+    this.authService.user.subscribe(val => {
+      this.user = val;
     });
   }
 }
