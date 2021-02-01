@@ -1,0 +1,29 @@
+<p-card>
+  <form [formGroup]="this.formGroup" class="text-center mx-auto" #formRef="ngForm" (ngSubmit)="this.login()"
+    [class.validated]="formRef.submitted">
+    <div class="form-group">
+      <label class="d-block">Email address</label>
+      <span class="p-input-icon-left">
+        <i class="pi pi-envelope"></i>
+        <input formControlName="email" type="email" class="form-control" aria-describedby="emailHelp"
+          placeholder="Enter email" pInputText>
+      </span>
+    </div>
+    <div class="form-group">
+      <label class="d-block">Password</label>
+      <span class="p-input-icon-left">
+        <i class="pi pi-eye-slash"></i>
+
+        <input formControlName="password" type="password" class="form-control" placeholder="Password" pInputText>
+      </span>
+
+    </div>
+    <div class="d-block">
+      <button pButton label="Login"></button>
+    </div>
+    <span class="d-block small">or</span>
+    <button class="btn btn-link" routerLink="/register">
+      Register
+    </button>
+  </form>
+</p-card>

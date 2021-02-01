@@ -1,0 +1,35 @@
+form {
+  max-width: 100%;
+  width: 450px;
+
+  @media (max-width: 767.98px) {
+    max-width: 80%;
+  }
+  .img-place-holder {
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+  }
+  .color {
+    width: 32px;
+    height: 32px;
+    line-height: 10px;
+    text-align: center;
+    padding: 0;
+  }
+  .color-remove {
+    top: -13px;
+    right: -6px;
+    z-index: 1;
+    background: white;
+    border-radius: 52%;
+    width: 20px;
+    height: 20px;
+    line-height: 15px;
+    font-size: 29px;
+    text-align: center;
+    border: gray 1px solid;
+    cursor: pointer;
+  }
+}

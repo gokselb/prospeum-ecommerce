@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "prospeum-ecommerce": {
+      "hosting": {
+        "prospeum-ecommerce": [
+          "prospeum-ecommerce"
+        ]
+      }
+    }
+  }
+}

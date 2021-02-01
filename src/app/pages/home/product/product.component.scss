@@ -1,0 +1,32 @@
+::ng-deep {
+  .product-item:hover .p-card-body {
+    background-color: darken($color: #fff, $amount: 5);
+    cursor: pointer;
+  }
+
+  .p-card-body {
+    overflow: hidden;
+    position: relative;
+    .discount-indicator {
+      position: absolute;
+      right: -59px;
+      top: -28px;
+      transform: rotate(45deg);
+      background: linear-gradient(34deg, red, #c1aeae59);
+      color: white;
+      padding: 47px 60px 13px 60px;
+      text-align: center;
+      box-shadow: 0px 1px 20px -1px #9c0000;
+    }
+  }
+  .product-item.new-item .p-card.p-component {
+    height: 100%;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    .p-card-body {
+      margin: auto;
+    }
+  }
+}

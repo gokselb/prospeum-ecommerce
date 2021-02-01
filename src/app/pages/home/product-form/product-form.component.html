@@ -1,0 +1,68 @@
+<form [formGroup]="this.formGroup" #formRef="ngForm" [class.validated]="formRef.submitted" (ngSubmit)="this.onSubmit()">
+  <div class="img-place-holder text-center mb-2">
+    <img [src]="this.formGroup?.controls?.imgUrl?.value" alt="">
+  </div>
+  <div class="form-group">
+    <label class="d-block">Name</label>
+    <span class="p-input-icon-left w-100">
+      <i class="pi pi-pencil"></i>
+      <input formControlName="name" type="text" class="form-control" placeholder="Enter product's name" pInputText>
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label class="d-block">Quantity</label>
+
+    <p-inputNumber styleClass="w-100" formControlName="quantity" [showButtons]="true" inputId="stacked">
+    </p-inputNumber>
+  </div>
+
+  <div class="form-group">
+    <label class="d-block">Image Url</label>
+    <span class="p-input-icon-left w-100">
+      <i class="pi pi-image"></i>
+      <input formControlName="imgUrl" type="text" class="form-control" pInputText>
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label class="d-block">Colours</label>
+    <div *ngFor="let item of this.colors;let i = index" class="position-relative d-inline mr-2">
+      <span class="position-absolute color-remove" (click)="this.removeColor(i)">-</span>
+      <p-colorPicker [ngModelOptions]="{standalone: true}" [name]="'picker'+i" [(ngModel)]="this.colors[i].value"
+        >
+      </p-colorPicker>
+    </div>
+    <button class="color btn btn-outline-info" type="button" (click)="this.addColor()">+</button>
+  </div>
+
+  <div class="form-group">
+    <label class="d-block">Sizes</label>
+    <p-chips styleClass="w-100" [ngModelOptions]="{standalone: true}" [(ngModel)]="sizes" [placeholder]="'Press enter to add more'"
+      [allowDuplicate]="false"></p-chips>
+  </div>
+
+  <div class="form-group">
+    <label class="d-block">Price</label>
+
+    <p-inputNumber styleClass="w-100" formControlName="price" [showButtons]="true" mode="currency" currency="EUR"
+      inputId="stacked">
+    </p-inputNumber>
+  </div>
+
+  <div class="form-group">
+    <label class="d-block">Discount (%)</label>
+
+    <p-inputNumber styleClass="w-100" formControlName="discount" [showButtons]="true" inputId="stacked">
+    </p-inputNumber>
+  </div>
+
+  <div class="form-group" *ngIf="this.formGroup?.value?.price && this.formGroup?.value?.discount">
+    <label class="d-block">Discounted Price</label>
+    {{ this.formGroup?.value?.price - (this.formGroup?.value?.price * this.formGroup?.value?.discount / 100) | currency: 'EUR'}}
+  </div>
+  <div class="float-right">
+
+    <button class="mb-3" label="Save" type="submit" icon="pi pi-save" pButton></button>
+  </div>
+</form>

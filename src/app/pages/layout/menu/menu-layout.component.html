@@ -1,0 +1,14 @@
+<div class="container mt-2">
+  <p-menubar [model]="items">
+    <button *ngIf="!this.user && !this.isLoginPage" pButton [label]="'Login'" routerLink='/login'
+      icon="pi pi-power-off"></button>
+    <button *ngIf="this.user" pButton [label]="user?.name" (click)="op.toggle($event)"
+      icon="pi pi-shopping-cart"></button>
+  </p-menubar>
+</div>
+
+<p-overlayPanel #op>
+  <ng-template pTemplate>
+    <app-pe-layout-menu-cart [overlayPanel]="op"></app-pe-layout-menu-cart>
+  </ng-template>
+</p-overlayPanel>

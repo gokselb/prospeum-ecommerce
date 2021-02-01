@@ -1,0 +1,44 @@
+<p-card class="product-item-detail">
+  <div class="row">
+    <div class="col-3">
+      <img class="img-fluid" [src]="product?.imgUrl" alt="">
+    </div>
+    <div class="col">
+      <h4 class="font-weight-bold">
+        {{this.product?.name}}
+      </h4>
+      <p *ngIf="this.product?.discount" class="h3 text-success">{{ this.product?.price - (this.product?.price *
+        this.product?.discount / 100) |
+        currency:
+        'EUR'}}</p>
+      <p [class.h3]="!this.product?.discount" [class.h4]="this.product?.discount"
+        [ngStyle]="{'text-decoration': this.product?.discount ? 'line-through': 'none'}">{{this.product?.price |
+        currency:
+        'EUR'}}</p>
+      <span>{{ this.product?.quantity }} available</span>
+      <div *ngIf="this.product?.colors?.length > 0" class="colors mt-2">
+        <label class="mr-2">Select color: </label>
+        <button class="color btn mr-2" *ngFor="let item of this.product?.colors" [style.background-color]="item.value"
+          [class.selected]="this.selectedColor == item" (click)="this.selectedColor = item"></button>
+      </div>
+
+      <div *ngIf="this.product?.sizes?.length > 0" class="sizes mt-2">
+        <label class="mr-2">Select size: </label>
+        <p-dropdown appendTo="body" [options]="this.product?.sizes" [(ngModel)]="this.selectedSize" optionLabel="value"
+          optionValue="value"></p-dropdown>
+      </div>
+      <hr>
+      <p-confirmPopup></p-confirmPopup>
+      <span *ngIf="(this.user | async)?.isAdmin" class="p-buttonset">
+        <button icon="pi pi-pencil" label="Edit" pButton (click)="this.editProduct()"></button>
+        <button label="Delete" icon="pi pi-trash" class="p-button-danger" pButton
+          (click)="this.deleteProduct($event)"></button>
+      </span>
+      <div class="float-right">
+        <button pButton label="Add to cart" icon="pi pi-shopping-cart" [class.disabled]="!(this.user | async)"
+          (click)="this.addToCart()"></button>
+      </div>
+    </div>
+  </div>
+  <span class="discount-indicator" *ngIf="this.product?.discount">{{ this.product?.discount }}%</span>
+</p-card>
