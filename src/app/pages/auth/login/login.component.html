@@ -1,6 +1,6 @@
 <p-card>
   <form [formGroup]="this.formGroup" class="text-center mx-auto" #formRef="ngForm" (ngSubmit)="this.login()"
-    [class.was-validated]="formRef.submitted">
+    [class.validated]="formRef.submitted">
     <div class="form-group">
       <label class="d-block">Email address</label>
       <span class="p-input-icon-left">
