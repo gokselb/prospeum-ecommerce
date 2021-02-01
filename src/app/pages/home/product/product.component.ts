@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Product } from 'src/app/models/product.model';
-import { NewProductComponent } from '../new-product/new-product.component';
+import { NewProductComponent } from '../product-form/new-product/new-product.component';
 
 @Component({
   selector: 'app-pe-home-product',
