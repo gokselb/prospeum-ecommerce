@@ -7,9 +7,9 @@ import { getNewId } from '../utils';
 import { LoadingService } from '../utils/loading.service';
 
 export class BaseDataService<T extends BaseModel> {
+  public collection: AngularFirestoreCollection<T>;
+  public collectionObs: Observable<T[]>;
   private collectionName!: string;
-  private collection: AngularFirestoreCollection<T>;
-  private collectionObs: Observable<T[]>;
 
   constructor(private firestore: AngularFirestore, collectionName: string, private loadingService: LoadingService) {
     this.collectionName = collectionName;
