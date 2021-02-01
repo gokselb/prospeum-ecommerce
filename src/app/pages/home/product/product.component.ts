@@ -15,8 +15,7 @@ export class ProductComponent {
   public constructor(private dialogService: DialogService) {}
   public showNewProduct(): void {
     this.dialogService.open(NewProductComponent, {
-      header: 'Add new product',
-      
+      header: 'Add new product'
     });
   }
 }

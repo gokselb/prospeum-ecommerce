@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { StandardMessages } from 'src/app/enums';
-import { NotificationTypes } from 'src/app/models/notification-types.enum';
+import { NotificationTypes } from 'src/app/enums';
 import { IndexedValue, Product } from 'src/app/models/product.model';
 import { ProductDataService } from 'src/app/services/data/product.data.service';
 import { NotificationService } from 'src/app/services/utils/notification.service';
@@ -48,6 +48,12 @@ export class NewProductComponent {
   }
 
   public onSubmit(): void {
+    if (this.colors.length === 0) {
+      this.notificationService.notify(NotificationTypes.Info, {
+        detail: StandardMessages.AddColor
+      });
+      return;
+    }
     this.formGroup.controls.colors.patchValue(this.colors);
     this.formGroup.controls.sizes.patchValue(
       this.sizes.map((value, index) => {

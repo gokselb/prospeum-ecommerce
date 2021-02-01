@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StandardMessages } from 'src/app/enums';
-import { NotificationTypes } from 'src/app/models/notification-types.enum';
+import { NotificationTypes } from 'src/app/enums';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { NotificationService } from 'src/app/services/utils/notification.service';
 

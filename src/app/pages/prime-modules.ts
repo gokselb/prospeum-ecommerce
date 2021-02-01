@@ -11,6 +11,7 @@ import { ChipsModule } from 'primeng/chips';
 import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { OrderListModule } from 'primeng/orderlist';
 
 export const PrimeModules: any[] = [
   MenubarModule,
@@ -25,5 +26,6 @@ export const PrimeModules: any[] = [
   ChipsModule,
   DropdownModule,
   CheckboxModule,
-  OverlayPanelModule
+  OverlayPanelModule,
+  OrderListModule
 ];

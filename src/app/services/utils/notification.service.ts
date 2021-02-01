@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Message, MessageService } from 'primeng/api';
-import { NotificationTypes } from 'src/app/models/notification-types.enum';
+import { NotificationTypes } from 'src/app/enums';
 
 @Injectable()
 export class NotificationService {

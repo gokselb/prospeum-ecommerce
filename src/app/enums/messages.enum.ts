@@ -4,5 +4,7 @@ export enum StandardMessages {
   LoggedIn = 'Logged in successfully.',
   Registered = 'Registered in successfully.',
   Error = 'There was a problem, please try again.',
-  UserNotFound = 'User not found, please check credentials.'
+  UserNotFound = 'User not found, please check credentials.',
+  SelectColor = 'Please select a color.',
+  AddColor = 'Add at least one color.'
 }

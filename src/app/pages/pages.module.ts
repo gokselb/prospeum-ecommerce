@@ -9,12 +9,12 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { PagesRoutingModule } from './pages-routing.module';
 import { NotificationService } from '../services/utils/notification.service';
 import { components } from './index';
-
+import { CartService } from '../services/store/cart/cart.service';
 
 @NgModule({
   imports: [CommonModule, ReactiveFormsModule, FormsModule, PagesRoutingModule, ...PrimeModules],
   declarations: [...components],
   exports: [...components],
-  providers: [FormBuilder, MessageService, NotificationService, DialogService]
+  providers: [FormBuilder, MessageService, NotificationService, DialogService, CartService]
 })
 export class PagesModule {}

@@ -1,8 +1,11 @@
 import { Component, Input } from '@angular/core';
+import { NotificationTypes, StandardMessages } from 'src/app/enums';
 
-import { Product } from 'src/app/models/product.model';
+import { IndexedValue, Product } from 'src/app/models/product.model';
 import { ProductDataService } from 'src/app/services/data/product.data.service';
+import { CartService } from 'src/app/services/store/cart/cart.service';
 import { RouterService } from 'src/app/services/store/router';
+import { NotificationService } from 'src/app/services/utils/notification.service';
 
 @Component({
   selector: 'app-pe-home-product-detail',
@@ -11,9 +14,14 @@ import { RouterService } from 'src/app/services/store/router';
 })
 export class ProductDetailComponent {
   public product: Product;
-  public selectedColor: number;
-  public selectedSize: number;
-  public constructor(private routerService: RouterService, private productService: ProductDataService) {
+  public selectedColor: IndexedValue<string>;
+  public selectedSize: string;
+  public constructor(
+    private routerService: RouterService,
+    private productService: ProductDataService,
+    private cartService: CartService,
+    private notificationService: NotificationService
+  ) {
     this.getProductId();
   }
   private getProductId(): void {
@@ -23,6 +31,18 @@ export class ProductDetailComponent {
           this.product = result;
         });
       }
+    });
+  }
+
+  public addToCart(): void {
+    if (!this.selectedColor) {
+      this.notificationService.notify(NotificationTypes.Info, {
+        detail: StandardMessages.Error
+      });
+    }
+    this.cartService.addProduct({
+      product: this.product,
+      customValues: { Color: this.selectedColor.value, Size: this.selectedSize ? this.selectedSize : this.product.sizes[0].value }
     });
   }
 }

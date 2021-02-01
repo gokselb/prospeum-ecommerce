@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, filter, map } from 'rxjs/operators';
 import { StandardMessages } from 'src/app/enums';
-import { NotificationTypes } from 'src/app/models/notification-types.enum';
+import { NotificationTypes } from 'src/app/enums';
 import { User } from 'src/app/models/user.model';
 import { Credentials } from '../../models/credentials.model';
 import { UserDataService } from '../data/user.data.service';
