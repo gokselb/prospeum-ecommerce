@@ -6,14 +6,13 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 
-import { UserFacade } from './auth/users';
 import { ProductDataService } from './data/product.data.service';
-import { CustomSerializer, reducers } from './store';
-import { RouterService } from './store/router.service';
+import { UserDataService } from './data/user.data.service';
+import { reducers } from './store';
+import { CustomSerializer, RouterService } from './store/router';
 
 @NgModule({
   imports: [
-    EffectsModule.forRoot([UserFacade]),
 
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
@@ -24,6 +23,6 @@ import { RouterService } from './store/router.service';
       serializer: CustomSerializer
     })
   ],
-  providers: [UserFacade, ProductDataService, RouterService]
+  providers: [ProductDataService, UserDataService, RouterService]
 })
 export class ServiceModule {}
