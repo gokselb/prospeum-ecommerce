@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { OverlayPanel } from 'primeng/overlaypanel';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Cart, CartItem } from 'src/app/models/cart.model';
@@ -16,6 +17,7 @@ export class MenuCartComponent {
   public user: Observable<User>;
   public cart: Observable<CartItem[]>;
   public totalPrice: number;
+  @Input() overlayPanel: OverlayPanel;
 
   public constructor(private authService: AuthService, private cartService: CartService) {
     this.user = this.authService.user;
@@ -29,5 +31,10 @@ export class MenuCartComponent {
         return val.cartItems;
       })
     );
+  }
+
+  public logout(): void {
+    this.authService.logout();
+    this.overlayPanel.hide();
   }
 }

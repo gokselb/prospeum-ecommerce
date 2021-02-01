@@ -13,6 +13,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { OrderListModule } from 'primeng/orderlist';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { TooltipModule } from 'primeng/tooltip';
+
 export const PrimeModules: any[] = [
   MenubarModule,
   ButtonModule,
@@ -28,5 +30,6 @@ export const PrimeModules: any[] = [
   CheckboxModule,
   OverlayPanelModule,
   OrderListModule,
-  ConfirmPopupModule
+  ConfirmPopupModule,
+  TooltipModule
 ];

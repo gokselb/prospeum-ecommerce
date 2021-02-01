@@ -45,6 +45,12 @@ export class ProductFormComponent {
       });
       return;
     }
+    if (this.sizes.length === 0) {
+      this.notificationService.notify(NotificationTypes.Info, {
+        detail: StandardMessages.AddColor
+      });
+      return;
+    }
     this.formGroup.controls.colors.patchValue(this.colors);
     this.formGroup.controls.sizes.patchValue(
       this.sizes.map((value, index) => {

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, filter, map } from 'rxjs/operators';
@@ -7,7 +8,7 @@ import { NotificationTypes } from 'src/app/enums';
 import { User } from 'src/app/models/user.model';
 import { Credentials } from '../../models/credentials.model';
 import { UserDataService } from '../data/user.data.service';
-import { loggedIn } from '../store/user';
+import { loggedIn, loggedOut } from '../store/user';
 import { NotificationService } from '../utils/notification.service';
 
 @Injectable({
@@ -19,7 +20,8 @@ export class AuthService {
   constructor(
     private notificationService: NotificationService,
     private userDataService: UserDataService,
-    private store: Store<{ user: User }>
+    private store: Store<{ user: User }>,
+    private router: Router
   ) {
     this.user = this.store.select('user').pipe(map(val => (this.currentUser = val)));
   }
@@ -53,5 +55,10 @@ export class AuthService {
         return throwError(err);
       })
     );
+  }
+
+  logout(): void {
+    this.store.dispatch(loggedOut());
+    this.router.navigate(['/']);
   }
 }

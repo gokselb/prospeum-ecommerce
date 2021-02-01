@@ -29,13 +29,14 @@
       </div>
       <hr>
       <p-confirmPopup></p-confirmPopup>
-      <span class="p-buttonset">
+      <span *ngIf="(this.user | async)?.isAdmin" class="p-buttonset">
         <button icon="pi pi-pencil" label="Edit" pButton (click)="this.editProduct()"></button>
         <button label="Delete" icon="pi pi-trash" class="p-button-danger" pButton
           (click)="this.deleteProduct($event)"></button>
       </span>
       <div class="float-right">
-        <button pButton label="Add to cart" icon="pi pi-shopping-cart" (click)="this.addToCart()"></button>
+        <button pButton label="Add to cart" icon="pi pi-shopping-cart" [class.disabled]="!(this.user | async)"
+          (click)="this.addToCart()"></button>
       </div>
     </div>
   </div>

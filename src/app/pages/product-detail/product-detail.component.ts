@@ -2,9 +2,12 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
+import { Observable } from 'rxjs';
 import { NotificationTypes, StandardMessages } from 'src/app/enums';
 
 import { IndexedValue, Product } from 'src/app/models/product.model';
+import { User } from 'src/app/models/user.model';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { ProductDataService } from 'src/app/services/data/product.data.service';
 import { CartService } from 'src/app/services/store/cart/cart.service';
 import { RouterService } from 'src/app/services/store/router';
@@ -20,6 +23,9 @@ export class ProductDetailComponent {
   public product: Product;
   public selectedColor: IndexedValue<string>;
   public selectedSize: string;
+
+  public user: Observable<User>;
+  public currentUser: User;
   public constructor(
     private routerService: RouterService,
     private productService: ProductDataService,
@@ -27,9 +33,12 @@ export class ProductDetailComponent {
     private notificationService: NotificationService,
     private router: Router,
     private confirmationService: ConfirmationService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private authService: AuthService
   ) {
     this.getProductId();
+    this.user = this.authService.user;
+    this.currentUser = this.authService.currentUser;
   }
   private getProductId(): void {
     this.routerService.currentRoute().subscribe(value => {
@@ -42,6 +51,12 @@ export class ProductDetailComponent {
   }
 
   public addToCart(): void {
+    if (!this.currentUser) {
+      this.notificationService.notify(NotificationTypes.Info, {
+        detail: StandardMessages.LoginToProceed
+      });
+      return;
+    }
     if (!this.selectedColor) {
       this.notificationService.notify(NotificationTypes.Info, {
         detail: StandardMessages.SelectColor

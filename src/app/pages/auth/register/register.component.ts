@@ -21,6 +21,9 @@ export class RegisterComponent {
     private router: Router
   ) {
     this.createForm();
+    if (this.authService.currentUser) {
+      this.router.navigateByUrl('/');
+    }
   }
 
   private createForm(): void {

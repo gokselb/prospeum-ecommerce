@@ -5,11 +5,12 @@
   <ul class="list-group">
     <li *ngFor="let item of this.cart | async" class="list-group-item">
       <span class="mr-4">{{item.product.name}}</span>
-      <span class="mr-1" [class.small]="item.product.discount" [class.float-right]="!item.product.discount"
+
+      <span class="float-right" *ngIf="item.product.discount">{{item.product?.price - (item.product?.price *
+        item.product?.discount / 100) | currency: 'EUR'}}</span>
+      <span class="mr-1 float-right" [class.small]="item.product.discount"
         [ngStyle]="{'text-decoration': item.product.discount ? 'line-through': 'none'}">{{item.product.price |
         currency: 'EUR'}}</span>
-      <span *ngIf="item.product.discount">{{item.product?.price - (item.product?.price *
-        item.product?.discount / 100) | currency: 'EUR'}}</span>
       <p class="m-0">
 
         <span class="color btn mr-2" [style.background-color]="item.customValues.Color"></span>
@@ -17,8 +18,11 @@
       </p>
     </li>
     <li class="list-group-item">
-      Total: 
-      <span class="float-right">{{ this.totalPrice  | currency: 'EUR'}}</span>
+      Total:
+      <span class="float-right">{{ this.totalPrice | currency: 'EUR'}}</span>
+    </li>
+    <li class="list-group-item">
+      <button class="btn-block" pButton (click)="this.logout()" label="Logout" icon="pi pi-lock"></button>
     </li>
   </ul>
 </div>

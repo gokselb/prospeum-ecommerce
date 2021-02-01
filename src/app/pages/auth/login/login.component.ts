@@ -20,6 +20,9 @@ export class LoginComponent {
     private router: Router
   ) {
     this.createForm();
+    if (this.authService.currentUser) {
+      this.router.navigateByUrl('/');
+    }
   }
 
   private createForm(): void {
